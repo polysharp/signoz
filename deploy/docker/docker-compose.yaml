@@ -114,6 +114,13 @@ services:
     container_name: signoz
     command:
       - --config=/root/config/prometheus.yml
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.signoz.rule=Host(`signoz.alfred.polysharp.fr`)"
+      - "traefik.http.routers.signoz.entrypoints=websecure"
+      - "traefik.http.routers.signoz.tls.certresolver=myresolver"
+      - "traefik.http.routers.signoz.service=signoz"
+      - "traefik.http.services.signoz.loadbalancer.server.port=8080"
     ports:
       - "8080:8080" # signoz port
     #   - "6060:6060"     # pprof port
