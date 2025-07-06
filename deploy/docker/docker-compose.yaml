@@ -1,7 +1,7 @@
 version: "3"
 x-common: &common
   networks:
-    - signoz-net
+    - traefik
   restart: unless-stopped
   logging:
     options:
@@ -184,8 +184,8 @@ services:
       - --up=
     restart: on-failure
 networks:
-  signoz-net:
-    name: signoz-net
+  traefik:
+    external: true
 volumes:
   clickhouse:
     name: signoz-clickhouse
