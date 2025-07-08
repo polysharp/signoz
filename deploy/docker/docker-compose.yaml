@@ -116,6 +116,7 @@ services:
       - --config=/root/config/prometheus.yml
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
       - "traefik.http.routers.signoz.rule=Host(`signoz.alfred.polysharp.fr`)"
       - "traefik.http.routers.signoz.entrypoints=websecure"
       - "traefik.http.routers.signoz.tls.certresolver=myresolver"
